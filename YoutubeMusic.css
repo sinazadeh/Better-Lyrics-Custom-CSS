@@ -1,0 +1,171 @@
+/* Even Better Lyrics Plus, a theme for BetterLyrics by Noah & BetterLyrics  */
+
+:root {
+  --yt-album-size: 600px;
+  --blyrics-hover-scale: 1.02;
+  /* Existing root variables... */
+}
+
+ytmusic-player-page:not([video-mode]):not([player-fullscreened]):not(
+    [blyrics-dfs]
+  ):not([player-ui-state="MINIPLAYER"])
+  #player.ytmusic-player-page {
+  max-width: var(--yt-album-size) !important;
+  overflow: hidden;
+}
+
+.blyrics-container {
+  overflow: hidden;
+  padding: 10px;
+}
+
+.blyrics-container:has(.blyrics--active)
+  > div:not(.blyrics--active):not(.blyrics--active ~ div) {
+  opacity: 0.33;
+  filter: blur(2.5px);
+}
+
+.blyrics-container > div.blyrics--active {
+  opacity: 1;
+  filter: blur(0px);
+}
+
+.blyrics-container > div.blyrics--active ~ div {
+  opacity: 0.66;
+  filter: blur(0px);
+}
+
+.blyrics-container > div {
+  transition: filter calc(var(--blyrics-duration) / 2),
+    opacity calc(var(--blyrics-duration) / 2), transform 0.166s;
+  padding: 5px 0;
+  transform-origin: left center;
+}
+
+/* Refined hover effect for lyrics */
+.blyrics-container > div:hover {
+  opacity: 1 !important;
+  filter: blur(0px) !important;
+  transform: scale(var(--blyrics-hover-scale));
+  transition: all 0.3s ease;
+}
+
+@keyframes scalePulse {
+  0% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes slowRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+ytmusic-player-page:before {
+  background: linear-gradient(
+      to right,
+      var(--blyrics-background-color),
+      var(--blyrics-background-color)
+    ),
+    var(--blyrics-background-img);
+  background-position: 50% !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  bottom: 0;
+  content: "";
+  filter: blur(var(--blyrics-background-blur))
+    saturate(var(--blyrics-background-saturate));
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: scale(1.2);
+  transform-origin: center center;
+  z-index: -100;
+
+  animation: scalePulse 8s ease-in-out infinite, slowRotate 30s linear infinite;
+  animation-composition: add;
+  will-change: transform;
+}
+
+/* Custom part */
+ytmusic-player-bar,
+#player-bar-background {
+  margin: 0.5%;
+  width: 99%;
+  border-radius: 1em;
+  overflow: hidden;
+  background-color: #0008;
+}
+
+.side-panel.ytmusic-player-page {
+  background-color: #000a;
+  padding: 1%;
+  border-radius: 1em;
+  transform: translate(5%, -3%);
+}
+
+tp-yt-paper-listbox.style-scope.ytmusic-menu-popup-renderer {
+  background-color: #000c;
+}
+
+ytmusic-player-expanding-menu {
+  background-color: #0000;
+}
+
+:root {
+  --ts-body-color: #00000000 !important;
+  transition: background-color 0.5s ease-in-out, background 0.5s ease-in-out,
+    border 0.5s ease-in-out, box-shadow 0.5s ease-in-out !important;
+}
+
+body {
+  background-color: transparent !important;
+  transition: background-color 0.5s ease-in-out, background 0.5s ease-in-out,
+    border 0.5s ease-in-out, box-shadow 0.5s ease-in-out !important;
+}
+
+#nav-bar-divider,
+#background {
+  display: none !important;
+}
+
+#mini-guide-background {
+  display: none;
+}
+
+#guide,
+ytmusic-nav-bar,
+.background-gradient {
+  background-color: var(--ts-body-color) !important;
+  background-image: none !important;
+  background-repeat: no-repeat !important;
+}
+
+ytmusic-player-page {
+  background-color: #0000 !important;
+}
+
+ytmusic-guide-section-renderer.style-scope.ytmusic-guide-renderer {
+  background-color: #0008;
+  border-radius: 1em;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10%;
+}
+ytmusic-player.style-scope.ytmusic-player-page {
+  scale: 1.2;
+  transform: translate(3%, -5%);
+}
